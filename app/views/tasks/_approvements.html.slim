@@ -1,0 +1,6 @@
+.dropdown.row.justify-content-end id='approvements_count'
+        button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+          | Approvements #{task.approvements_count}
+        .dropdown-menu aria-labelledby="dropdownMenuButton" 
+          p.dropdown-item
+            = task.approved_users_names

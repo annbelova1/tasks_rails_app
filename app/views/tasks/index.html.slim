@@ -1,0 +1,32 @@
+.card.mb-3
+  h4.p-3.mb-2.bg-light.text-dark
+    | Logged as: #{link_to current_user.formatted_name, user_root_path(current_user)}
+  form.text-right.pr-sm-4.my-lg-3
+    button.btn.btn-outline-danger type="button" 
+      = link_to 'Log out', destroy_user_session_path, method: :delete
+.card.mb-3
+  .card-header
+    h4.p-3.mb-2.bg-light.text-dark New task
+  .card-body
+    = render "tasks/form"
+- if @tasks.present?
+  .card.mb-3
+    .card-body
+      h1.p-3.mb-2.bg-secondary.text-white Created tasks
+      #created_tasks.card-body
+        = render @tasks.where(status: 'created').order(created_at: :desc)
+    .card-body
+      h1.p-3.mb-2.bg-primary.text-white Tasks in progress
+      #tasks_in_progress.card-body
+        = render @tasks.where(status: 'in_progress').order(created_at: :desc)
+    .card-body
+      h1.p-3.mb-2.bg-success.text-white Completed tasks
+      #completed_tasks.card-body
+        = render @tasks.where(status: 'completed').order(completed_at: :desc)
+    .card-body
+      h1.p-3.mb-2.bg-danger.text-white Canceled tasks
+      #canceled_tasks.card-body
+        = render @tasks.where(status: 'canceled').order(canceled_at: :desc)
+- else
+  .card.mb-3
+    h1.p-3.mb-2.bg-secondary.text-white Be the first to create a task!

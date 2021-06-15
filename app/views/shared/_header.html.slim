@@ -1,0 +1,10 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5.sticky-top.shadow-sm
+  .container
+    button.navbar-toggler aria-controls="navbarNav" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNav" data-toggle="collapse" type="button" 
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse.justify-content-end
+      ul.navbar-nav
+        li.nav-item
+          = link_to "Tasks", tasks_path, class: "nav-link"
+        li.nav-item
+          = link_to "Current user", user_root_path(current_user), class: "nav-link"

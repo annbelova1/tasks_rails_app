@@ -1,0 +1,8 @@
+<% if @result.failure? %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    document.getElementById(<%= @task.id %>).insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "shared/service_object", object: @result) %>');
+<% else %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    document.getElementById('dropdown-approvements-' + <%= @task.id %>).remove();
+    document.getElementById('approvements-' + <%= @task.id %>).insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "tasks/approvements", task: @task) %>');
+<% end %>

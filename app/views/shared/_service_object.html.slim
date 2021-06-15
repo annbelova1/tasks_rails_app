@@ -1,0 +1,4 @@
+- if object.failure?
+  #error_explanation.alert.alert-danger role="alert" 
+    p.font-weight-bold
+      = @result.data[:errors][0][:title]

@@ -1,0 +1,10 @@
+<% if @result.failure? %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    document.getElementById(<%= @task.id %>).insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "shared/service_object", object: @result) %>');
+<% else %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    document.getElementById(<%= @task.id %>).remove() ;
+    document.querySelector('#tasks_in_progress').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render @task) %>') ;
+    document.getElementById(<%= @task.id %>).scrollIntoView({block: "center", behavior: "smooth"});
+<% end %>
+

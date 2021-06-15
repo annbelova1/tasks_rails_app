@@ -1,0 +1,10 @@
+<% if @task.errors.any? %>
+    <%# NOTE task STEP 4: This removes any error messages that were previously generated. %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    <%# NOTE task STEP 4: This selects the `<form>` in `app/views/posts/show.html.erb` and dynamically injects the `app/views/shared/_validation-messages.html.erb` partial. %>
+    document.querySelector('#tasks-form').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "shared/validation-messages", object: @task) %>');
+<% else %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    document.querySelector('#created_tasks').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render @task) %>') ;
+    document.querySelector('#tasks-form').reset();
+<% end %>

@@ -1,0 +1,39 @@
+.py-3.border-bottom.task id="#{task.id}"
+  - if task.created?
+    .py-3.border-bottom.task
+      small.d-inline-block.mb-3.text-secondary.border-bottom
+        | Created by: #{link_to task.user.formatted_name, user_root_path(task.user)} #{time_ago_in_words(task.created_at)} ago.
+      p= task.name
+      .btn-group
+          = button_to "Start", start_task_path(task), method: :patch, remote: true, class: "btn btn-sm btn-outline-primary"
+  - elsif task.in_progress?
+    .py-3.border-bottom.task 
+      small.d-inline-block.mb-3.text-secondary.border-bottom
+        | Created by: #{link_to task.user.formatted_name, user_root_path(task.user)} #{time_ago_in_words(task.created_at)} ago.
+      p= task.name
+      .btn-group
+          = button_to "Complete", complete_task_path(task), method: :patch, remote: true, class: "btn btn-sm btn-outline-primary"
+          = button_to "Approve", approve_task_path(task), method: :patch, remote: true, class: "btn btn-sm btn-outline-primary"
+          = button_to "Cancel", cancel_task_path(task), method: :patch, data: { confirm: "Do you want to cancel task #{task.name}?" }, remote: true, class: "btn btn-sm btn-outline-danger"
+      div id="approvements-#{task.id}" 
+        .dropdown.row.justify-content-end id='dropdown-approvements-#{task.id}'
+          button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+            | Approvements #{task.approvements_count}
+          .dropdown-menu aria-labelledby="dropdownMenuButton" 
+            p.dropdown-item
+              = task.approved_users_names
+  - elsif  task.completed?
+    .py-3.border-bottom.task 
+      small.d-inline-block.mb-3.text-secondary.border-bottom
+        | Created by: #{link_to task.user.formatted_name, user_root_path(task.user)} #{time_ago_in_words(task.created_at)} ago.
+      p= task.name
+      small.d-inline-block.mb-3.text-secondary.border-bottom
+        | Completed at: #{time_ago_in_words(task.completed_at)} ago.
+  - else
+    .py-3.border-bottom.task 
+      small.d-inline-block.mb-3.text-secondary.border-bottom
+        | Created by: #{link_to task.user.formatted_name, user_root_path(task.user)} #{time_ago_in_words(task.created_at)} ago.
+      p= task.name
+      small.d-inline-block.mb-3.text-secondary.border-bottom
+        | Canceled at: #{time_ago_in_words(task.canceled_at)} ago.
+

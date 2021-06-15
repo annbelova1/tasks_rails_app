@@ -1,0 +1,4 @@
+- flash.each do |type, message|
+  .container
+    div class=("alert #{type == "notice" ? 'alert-success' : 'alert-danger'}") role="alert" 
+      = message
