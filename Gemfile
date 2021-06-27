@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
@@ -66,3 +64,7 @@ gem 'grape', '~> 1.3.0'
 gem 'grape_on_rails_routes'
 gem 'rack'
 gem 'thin'
+
+gem 'therubyracer', :platforms => :ruby
+gem 'execjs', '~> 2.7.0'
+

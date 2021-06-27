@@ -48,6 +48,7 @@ class TasksAPI < Grape::API
     desc 'Start a task'
     route_param :id do
       patch :start do
+        byebug
         authenticated_user
         Tasks::Start.call(task, current_user)
       end

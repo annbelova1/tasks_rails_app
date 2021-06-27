@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_002633) do
     t.text "name", null: false
     t.integer "status", default: 0, null: false, comment: "Статус"
     t.text "approved_user_ids", default: [], comment: "Пользователи, которые подтвердили задачу", array: true
-    t.boolean "approved", default: false, comment: "Подтверждение задачи"
     t.bigint "user_id", null: false, comment: "Создатель задачи"
     t.datetime "canceled_at", comment: "Время дедлайна"
     t.datetime "completed_at", comment: "Время завершения задачи"
